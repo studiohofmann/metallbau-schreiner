@@ -1,6 +1,7 @@
 import { sanityFetch } from "@/sanity/lib/client";
 import { HOME_QUERY } from "@/sanity/lib/queries";
 import { PortableText } from "@portabletext/react";
+import HeroImage from "@/components/HeroImage";
 
 export default async function Home() {
   const home = await sanityFetch({
@@ -12,5 +13,10 @@ export default async function Home() {
     return <div>No content found.</div>;
   }
 
-  return <PortableText value={home.introduction ?? []} />;
+  return (
+    <div>
+      <HeroImage />
+      <PortableText value={home.introduction ?? []} />
+    </div>
+  );
 }

@@ -1,11 +1,11 @@
 import { defineField } from "sanity";
-import { HomeIcon } from "@sanity/icons";
+import { EnvelopeIcon } from "@sanity/icons";
 
-const home = {
-  name: "home",
-  title: "Home",
+const contact = {
+  name: "contact",
+  title: "Contact",
   type: "document",
-  icon: HomeIcon,
+  icon: EnvelopeIcon,
 
   fields: [
     defineField({
@@ -31,27 +31,22 @@ const home = {
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: "heroImage",
-      title: "Hero Image",
-      type: "image",
-      options: {
-        hotspot: true,
-      },
-      fields: [
-        {
-          name: "alt",
-          type: "string",
-          title: "Alternative Text",
-        },
-      ],
-    }),
-    defineField({
       name: "introduction",
       title: "Introduction",
       type: "array",
       of: [{ type: "block" }],
     }),
+    defineField({
+      name: "telephone",
+      title: "Telephone",
+      type: "string",
+    }),
+    defineField({
+      name: "email",
+      title: "Email",
+      type: "string",
+    }),
   ],
 };
 
-export default home;
+export default contact;

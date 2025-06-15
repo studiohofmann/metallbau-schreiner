@@ -1,16 +1,16 @@
 import { defineField } from "sanity";
-import { HomeIcon } from "@sanity/icons";
+import { AddIcon } from "@sanity/icons";
 
-const home = {
-  name: "home",
-  title: "Home",
+const project = {
+  name: "project",
+  title: "Project",
   type: "document",
-  icon: HomeIcon,
+  icon: AddIcon,
 
   fields: [
     defineField({
-      name: "pageTitleMenu",
-      title: "Page Title / Menu",
+      name: "title",
+      title: "Title",
       type: "string",
     }),
     defineField({
@@ -27,12 +27,12 @@ const home = {
       type: "slug",
       description:
         "Add a custom slug for the URL or generate one from the menu",
-      options: { source: "pageTitleMenu" },
+      options: { source: "title" },
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: "heroImage",
-      title: "Hero Image",
+      name: "titleImage",
+      title: "Title Image",
       type: "image",
       options: {
         hotspot: true,
@@ -46,12 +46,33 @@ const home = {
       ],
     }),
     defineField({
-      name: "introduction",
-      title: "Introduction",
+      name: "text",
+      title: "Text",
       type: "array",
       of: [{ type: "block" }],
+    }),
+    defineField({
+      name: "gallery",
+      title: "Gallery",
+      type: "array",
+      of: [
+        {
+          type: "image",
+          fields: [
+            {
+              name: "alt",
+              type: "string",
+              title: "Alternative Text",
+            },
+          ],
+          options: {
+            hotspot: true,
+          },
+        },
+      ],
+      description: "Upload and manage multiple images as a gallery",
     }),
   ],
 };
 
-export default home;
+export default project;
