@@ -14,6 +14,10 @@ export default function LogoClient({ logoData }: LogoClientProps) {
   const pathname = usePathname();
   const isHome = pathname === "/";
 
+  console.log("🚨 LOGO CLIENT RENDERED 🚨");
+  console.log("pathname:", pathname);
+  console.log("isHome:", isHome);
+
   const components: PortableTextComponents = {
     marks: {},
     block: {
@@ -26,7 +30,7 @@ export default function LogoClient({ logoData }: LogoClientProps) {
   return (
     <Link
       href="/"
-      className={`flex items-center ${
+      className={`flex justify-center items-center ${
         isHome ? "text-zinc-400" : "text-zinc-500 hover:text-zinc-400"
       }`}
     >
