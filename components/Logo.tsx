@@ -4,6 +4,7 @@ import LogoClient from "./LogoClient";
 import type { LOGO_QUERYResult } from "@/sanity/types"; // 1. Import the auto-generated type
 
 export default async function Logo() {
+  // 2. Apply the specific type to your fetched data
   const logo: LOGO_QUERYResult = await sanityFetch({
     query: LOGO_QUERY,
     revalidate: 60,
@@ -13,11 +14,12 @@ export default async function Logo() {
     return null;
   }
 
-  // Ensure children is always an array (never undefined) for each block
-  const logoData = (logo.logo ?? []).map((block: any) => ({
-    ...block,
-    children: block.children ?? [],
-  }));
-
-  return <LogoClient logoData={logoData} />;
+  return (
+    <LogoClient
+      logoData={(logo.logo ?? []).map((block: any) => ({
+        ...block,
+        children: block.children ?? [],
+      }))}
+    />
+  );
 }
