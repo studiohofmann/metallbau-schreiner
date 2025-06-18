@@ -48,7 +48,25 @@ export type Disclaimer = {
   pageTitleMenu?: string;
   sortOrder?: number;
   slug?: Slug;
-  introduction?: Array<{
+  legal?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+  disclaimer?: Array<{
     children?: Array<{
       marks?: Array<string>;
       text?: string;
@@ -628,11 +646,29 @@ export type CONTACT_QUERYResult = {
   email: string | null;
 } | null;
 // Variable: DISCLAIMER_QUERY
-// Query: *[_type == "disclaimer"][0]{  pageTitleMenu, slug, introduction,}
+// Query: *[_type == "disclaimer"][0]{  pageTitleMenu, slug, legal, disclaimer,}
 export type DISCLAIMER_QUERYResult = {
   pageTitleMenu: string | null;
   slug: Slug | null;
-  introduction: Array<{
+  legal: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }> | null;
+  disclaimer: Array<{
     children?: Array<{
       marks?: Array<string>;
       text?: string;
@@ -685,7 +721,7 @@ declare module "@sanity/client" {
     "*[_type == \"project\" && slug.current == $slug][0]{\n  title, sortOrder, slug, titleImage, text, gallery,\n}": PROJECT_QUERYResult;
     "*[_type == \"about\"][0]{\n  pageTitleMenu, slug, image, text,\n}": ABOUT_QUERYResult;
     "*[_type == \"contact\"][0]{\n  pageTitleMenu, slug, text, address, telephone, email,\n}": CONTACT_QUERYResult;
-    "*[_type == \"disclaimer\"][0]{\n  pageTitleMenu, slug, introduction,\n}": DISCLAIMER_QUERYResult;
+    "*[_type == \"disclaimer\"][0]{\n  pageTitleMenu, slug, legal, disclaimer,\n}": DISCLAIMER_QUERYResult;
     "*[_type == \"logo\"][0]{\n  logo,\n}": LOGO_QUERYResult;
   }
 }
