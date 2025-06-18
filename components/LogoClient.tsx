@@ -1,12 +1,14 @@
-// LogoClient.jsx
+// LogoClient.tsx
 "use client";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { PortableText, PortableTextComponents } from "next-sanity";
+import type { PortableTextBlock } from "@portabletext/types";
 
+// Define proper type for logoData
 interface LogoClientProps {
-  logoData: any; // Replace 'any' with a more specific type if available
+  logoData: PortableTextBlock[];
 }
 
 export default function LogoClient({ logoData }: LogoClientProps) {
@@ -19,7 +21,9 @@ export default function LogoClient({ logoData }: LogoClientProps) {
       normal: ({ children }) => (
         <p
           style={{ whiteSpace: "pre-wrap" }}
-          className={isHome ? "text-zinc-400" : "text-zinc-500"}
+          className={
+            isHome ? "text-zinc-400" : "text-zinc-500 hover:text-zinc-400"
+          }
         >
           {children}
         </p>

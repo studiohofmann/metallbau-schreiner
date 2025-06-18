@@ -1,6 +1,6 @@
 import { sanityFetch } from "@/sanity/lib/client";
 import { CONTACT_QUERY } from "@/sanity/lib/queries";
-import { PhoneFilled, MailFilled } from "@ant-design/icons";
+import { MailFilled } from "@ant-design/icons";
 
 export default async function ContactIcons() {
   const contact = await sanityFetch({

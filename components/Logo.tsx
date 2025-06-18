@@ -12,5 +12,11 @@ export default async function Logo() {
     return null;
   }
 
-  return <LogoClient logoData={logo.logo ?? []} />;
+  // Ensure children is always an array (never undefined) for each block
+  const logoData = (logo.logo ?? []).map((block: any) => ({
+    ...block,
+    children: block.children ?? [],
+  }));
+
+  return <LogoClient logoData={logoData} />;
 }
