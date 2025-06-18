@@ -3,7 +3,6 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import type { NAVIGATION_QUERYResult } from "@/sanity/types"; // Import your generated type
 
 // Use the stricter type for filtered items
 type MenuItem = {

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
-import type { Home, Project } from "@/sanity/types"; // Import your generated types
+import type { Home } from "@/sanity/types"; // Import your generated types
 
 // Use the image type from your schema (they are the same structure)
 type SanityImageType = NonNullable<Home["heroImage"]>;

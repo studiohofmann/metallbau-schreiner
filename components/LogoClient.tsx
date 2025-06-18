@@ -24,7 +24,12 @@ export default function LogoClient({ logoData }: LogoClientProps) {
   };
 
   return (
-    <Link href="/" className={isHome ? "active-logo" : ""}>
+    <Link
+      href="/"
+      className={`flex items-center ${
+        isHome ? "text-zinc-400" : "text-zinc-500 hover:text-zinc-400"
+      }`}
+    >
       <PortableText value={logoData?.logo ?? []} components={components} />
     </Link>
   );
