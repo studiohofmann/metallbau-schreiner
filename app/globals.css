@@ -136,6 +136,10 @@
     @apply text-sm font-bold text-zinc-500 hover:text-zinc-400;
   }
 
+  a.active-logo {
+    @apply !text-zinc-400;
+  }
+
   .page {
     @apply flex flex-col gap-8;
     @apply mt-22 mb-8;
