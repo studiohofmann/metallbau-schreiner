@@ -1,25 +1,28 @@
 import { sanityFetch } from "@/sanity/lib/client";
 import { LOGO_QUERY } from "@/sanity/lib/queries";
-import LogoClient from "./LogoClient";
-import type { LOGO_QUERYResult } from "@/sanity/types"; // 1. Import the auto-generated type
+import Link from "next/link";
+import { PortableText, PortableTextComponents } from "next-sanity";
 
 export default async function Logo() {
-  // 2. Apply the specific type to your fetched data
-  const logo: LOGO_QUERYResult = await sanityFetch({
+  const logo = await sanityFetch({
     query: LOGO_QUERY,
     revalidate: 60,
   });
-
   if (!logo) {
     return null;
   }
-
+  const components: PortableTextComponents = {
+    marks: {},
+    block: {
+      normal: ({ children }) => (
+        <p style={{ whiteSpace: "pre-wrap" }}>{children}</p>
+      ),
+    },
+  };
   return (
-    <LogoClient
-      logoData={(logo.logo ?? []).map((block: any) => ({
-        ...block,
-        children: block.children ?? [],
-      }))}
-    />
+    <Link href={"/"}>
+      {" "}
+      <PortableText value={logo.logo ?? []} />
+    </Link>
   );
 }
