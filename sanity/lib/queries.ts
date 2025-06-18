@@ -11,7 +11,8 @@ export const HOME_QUERY = defineQuery(`*[_type == "home"][0]{
 export const PROJECTS_QUERY = defineQuery(`*[_type == "projects"][0]{
   pageTitleMenu, slug, introduction,
 }`);
-export const PROJECTS_GALLERY_QUERY = defineQuery(`*[_type == "project"]{
+export const PROJECTS_GALLERY_QUERY =
+  defineQuery(`*[_type == "project" && defined(slug.current)]{
   title, sortOrder, slug, titleImage
 }`);
 
@@ -21,13 +22,17 @@ export const PROJECT_QUERY =
 }`);
 
 export const ABOUT_QUERY = defineQuery(`*[_type == "about"][0]{
-  pageTitleMenu, slug, introduction,
+  pageTitleMenu, slug, image, text,
 }`);
 
 export const CONTACT_QUERY = defineQuery(`*[_type == "contact"][0]{
-  pageTitleMenu, slug, introduction, telephone, email,
+  pageTitleMenu, slug, text, address, telephone, email,
 }`);
 
 export const DISCLAIMER_QUERY = defineQuery(`*[_type == "disclaimer"][0]{
-  pageTitleMenu, slug, introduction,
+  pageTitleMenu, slug, legal, disclaimer,
+}`);
+
+export const LOGO_QUERY = defineQuery(`*[_type == "logo"][0]{
+  logo,
 }`);

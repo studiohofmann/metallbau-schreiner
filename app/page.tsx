@@ -14,9 +14,15 @@ export default async function Home() {
   }
 
   return (
-    <div>
-      <HeroImage />
-      <PortableText value={home.introduction ?? []} />
+    <div className="page">
+      <div className="flex flex-col gap-8 xl:flex-row">
+        <div className="xl:basis-1/2">
+          <HeroImage />
+        </div>
+        <div className="xl:basis-1/2">
+          <PortableText value={home.introduction ?? []} />
+        </div>
+      </div>
     </div>
   );
 }

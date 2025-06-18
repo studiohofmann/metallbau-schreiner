@@ -31,8 +31,23 @@ const about = {
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: "introduction",
-      title: "Introduction",
+      name: "image",
+      title: "Image",
+      type: "image",
+      options: {
+        hotspot: true,
+      },
+      fields: [
+        {
+          name: "alt",
+          type: "string",
+          title: "Alternative Text",
+        },
+      ],
+    }),
+    defineField({
+      name: "text",
+      title: "Text",
       type: "array",
       of: [{ type: "block" }],
     }),

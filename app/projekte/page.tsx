@@ -14,7 +14,7 @@ export default async function Projects() {
   }
 
   return (
-    <div>
+    <div className="page">
       <PortableText value={projects.introduction ?? []} />
       <ProjectsGallery />
     </div>

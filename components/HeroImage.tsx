@@ -9,7 +9,7 @@ export default async function HeroImage() {
   });
 
   return (
-    <div>
+    <div className="">
       {home && home.heroImage && (
         <SanityImage
           image={home.heroImage}

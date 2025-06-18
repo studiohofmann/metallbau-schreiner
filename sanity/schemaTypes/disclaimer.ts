@@ -31,8 +31,14 @@ const disclaimer = {
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: "introduction",
-      title: "Introduction",
+      name: "legal",
+      title: "Legal",
+      type: "array",
+      of: [{ type: "block" }],
+    }),
+    defineField({
+      name: "disclaimer",
+      title: "Disclaimer",
       type: "array",
       of: [{ type: "block" }],
     }),

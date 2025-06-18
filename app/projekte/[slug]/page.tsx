@@ -21,15 +21,22 @@ export default async function ProjectPage({
   }
 
   return (
-    <div>
+    <div className="page">
       <h1>{project.title}</h1>
-      {project.titleImage && (
-        <SanityImage
-          image={project.titleImage}
-          altFallback={project.title ?? undefined}
-        />
-      )}
-      <PortableText value={project.text ?? []} />
+      <div className="flex flex-col gap-8 md:flex-row">
+        {project.titleImage && (
+          <div className="md:basis-1/2">
+            <SanityImage
+              image={project.titleImage}
+              altFallback={project.title ?? undefined}
+            />
+          </div>
+        )}
+
+        <div className="md:basis-1/2">
+          <PortableText value={project.text ?? []} />
+        </div>
+      </div>
       {project.gallery && project.gallery.length > 0 && (
         <div className="gallery">
           {project.gallery.map((imageItem, index) => (

@@ -13,6 +13,32 @@
  */
 
 // Source: schema.json
+export type Logo = {
+  _id: string;
+  _type: "logo";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  logo?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+};
+
 export type Disclaimer = {
   _id: string;
   _type: "disclaimer";
@@ -51,7 +77,25 @@ export type Contact = {
   pageTitleMenu?: string;
   sortOrder?: number;
   slug?: Slug;
-  introduction?: Array<{
+  text?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+  address?: Array<{
     children?: Array<{
       marks?: Array<string>;
       text?: string;
@@ -82,7 +126,20 @@ export type About = {
   pageTitleMenu?: string;
   sortOrder?: number;
   slug?: Slug;
-  introduction?: Array<{
+  image?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  };
+  text?: Array<{
     children?: Array<{
       marks?: Array<string>;
       text?: string;
@@ -347,7 +404,7 @@ export type SanityAssetSourceData = {
   url?: string;
 };
 
-export type AllSanitySchemaTypes = Disclaimer | Contact | About | Project | Projects | Home | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
+export type AllSanitySchemaTypes = Logo | Disclaimer | Contact | About | Project | Projects | Home | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./sanity/lib/queries.ts
 // Variable: NAVIGATION_QUERY
@@ -417,6 +474,26 @@ export type PROJECTS_QUERYResult = {
     _key: string;
   }> | null;
 } | null;
+// Variable: PROJECTS_GALLERY_QUERY
+// Query: *[_type == "project" && defined(slug.current)]{  title, sortOrder, slug, titleImage}
+export type PROJECTS_GALLERY_QUERYResult = Array<{
+  title: string | null;
+  sortOrder: number | null;
+  slug: Slug | null;
+  titleImage: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  } | null;
+}>;
 // Variable: PROJECT_QUERY
 // Query: *[_type == "project" && slug.current == $slug][0]{  title, sortOrder, slug, titleImage, text, gallery,}
 export type PROJECT_QUERYResult = {
@@ -470,11 +547,24 @@ export type PROJECT_QUERYResult = {
   }> | null;
 } | null;
 // Variable: ABOUT_QUERY
-// Query: *[_type == "about"][0]{  pageTitleMenu, slug, introduction,}
+// Query: *[_type == "about"][0]{  pageTitleMenu, slug, image, text,}
 export type ABOUT_QUERYResult = {
   pageTitleMenu: string | null;
   slug: Slug | null;
-  introduction: Array<{
+  image: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  } | null;
+  text: Array<{
     children?: Array<{
       marks?: Array<string>;
       text?: string;
@@ -494,11 +584,29 @@ export type ABOUT_QUERYResult = {
   }> | null;
 } | null;
 // Variable: CONTACT_QUERY
-// Query: *[_type == "contact"][0]{  pageTitleMenu, slug, introduction, telephone, email,}
+// Query: *[_type == "contact"][0]{  pageTitleMenu, slug, text, address, telephone, email,}
 export type CONTACT_QUERYResult = {
   pageTitleMenu: string | null;
   slug: Slug | null;
-  introduction: Array<{
+  text: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }> | null;
+  address: Array<{
     children?: Array<{
       marks?: Array<string>;
       text?: string;
@@ -543,6 +651,28 @@ export type DISCLAIMER_QUERYResult = {
     _key: string;
   }> | null;
 } | null;
+// Variable: LOGO_QUERY
+// Query: *[_type == "logo"][0]{  logo,}
+export type LOGO_QUERYResult = {
+  logo: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }> | null;
+} | null;
 
 // Query TypeMap
 import "@sanity/client";
@@ -551,9 +681,11 @@ declare module "@sanity/client" {
     "*[_type in [\"projects\", \"about\", \"contact\", \"disclaimer\"]] | order(sortOrder asc) {pageTitleMenu, slug}": NAVIGATION_QUERYResult;
     "*[_type == \"home\"][0]{\n  pageTitleMenu, slug, heroImage, introduction,\n}": HOME_QUERYResult;
     "*[_type == \"projects\"][0]{\n  pageTitleMenu, slug, introduction,\n}": PROJECTS_QUERYResult;
+    "*[_type == \"project\" && defined(slug.current)]{\n  title, sortOrder, slug, titleImage\n}": PROJECTS_GALLERY_QUERYResult;
     "*[_type == \"project\" && slug.current == $slug][0]{\n  title, sortOrder, slug, titleImage, text, gallery,\n}": PROJECT_QUERYResult;
-    "*[_type == \"about\"][0]{\n  pageTitleMenu, slug, introduction,\n}": ABOUT_QUERYResult;
-    "*[_type == \"contact\"][0]{\n  pageTitleMenu, slug, introduction, telephone, email,\n}": CONTACT_QUERYResult;
+    "*[_type == \"about\"][0]{\n  pageTitleMenu, slug, image, text,\n}": ABOUT_QUERYResult;
+    "*[_type == \"contact\"][0]{\n  pageTitleMenu, slug, text, address, telephone, email,\n}": CONTACT_QUERYResult;
     "*[_type == \"disclaimer\"][0]{\n  pageTitleMenu, slug, introduction,\n}": DISCLAIMER_QUERYResult;
+    "*[_type == \"logo\"][0]{\n  logo,\n}": LOGO_QUERYResult;
   }
 }

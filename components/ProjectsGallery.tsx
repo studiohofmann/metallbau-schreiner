@@ -12,25 +12,30 @@ interface Project {
 
 // Update the function to use the Project[] type
 export default async function ProjectsPage() {
-  const gallery: Project[] = await sanityFetch({
+  const rawGallery = await sanityFetch({
     query: PROJECTS_GALLERY_QUERY,
     revalidate: 60,
   });
 
-  if (!gallery || gallery.length === 0) {
-    return <div>No projects found</div>;
-  }
+  // Filter and map to ensure slug and title are not null
+  const gallery: Project[] = (rawGallery as any[])
+    .filter((project) => project.slug && project.slug.current && project.title)
+    .map((project) => ({
+      slug: { current: project.slug.current },
+      title: project.title,
+      titleImage: project.titleImage,
+    }));
 
   return (
-    <div className="container mx-auto py-8">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div>
+      <div className="gallery">
         {gallery.map((project: Project) => (
           <Link
             href={`/projekte/${project.slug.current}`}
             key={project.slug.current}
             className="group"
           >
-            <div>
+            <div className="flex flex-col gap-4">
               {project.titleImage && (
                 <SanityImage
                   image={project.titleImage}
@@ -38,9 +43,7 @@ export default async function ProjectsPage() {
                   aspectRatio="aspect-4/3"
                 />
               )}
-              <div className="p-4">
-                <h2 className="text-xl font-medium">{project.title}</h2>
-              </div>
+              <div>{project.title}</div>
             </div>
           </Link>
         ))}

@@ -31,8 +31,14 @@ const contact = {
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: "introduction",
-      title: "Introduction",
+      name: "text",
+      title: "Text",
+      type: "array",
+      of: [{ type: "block" }],
+    }),
+    defineField({
+      name: "address",
+      title: "Address",
       type: "array",
       of: [{ type: "block" }],
     }),

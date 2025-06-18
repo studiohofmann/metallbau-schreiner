@@ -5,7 +5,8 @@ import project from "./project";
 import about from "./about";
 import contact from "./contact";
 import disclaimer from "./disclaimer";
+import logo from "./logo";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [home, projects, project, about, contact, disclaimer],
+  types: [home, projects, project, about, contact, disclaimer, logo],
 };

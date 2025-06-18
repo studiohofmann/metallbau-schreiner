@@ -12,5 +12,16 @@ export default async function Disclaimer() {
     return <div>No content found.</div>;
   }
 
-  return <PortableText value={disclaimer.introduction ?? []} />;
+  return (
+    <div className="mt-22 mb-8">
+      <div className="flex flex-col gap-8 xl:flex-row">
+        <div className="xl:basis-1/2">
+          <PortableText value={disclaimer.legal ?? []} />
+        </div>
+        <div className="xl:basis-1/2">
+          <PortableText value={disclaimer.disclaimer ?? []} />
+        </div>
+      </div>
+    </div>
+  );
 }

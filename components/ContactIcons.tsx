@@ -7,13 +7,13 @@ export default async function ContactIcons() {
     query: CONTACT_QUERY,
     revalidate: 60,
   });
+  if (!contact) {
+    return null;
+  }
   return (
-    <div className="flex space-x-4">
-      <a href={`tel:${contact.telephone}`}>
-        <PhoneFilled />
-      </a>
+    <div className="flex items-center justify-center">
       <a href={`mailto:${contact.email}`}>
-        <MailFilled />
+        <MailFilled className="text-base" />
       </a>
     </div>
   );
