@@ -2,6 +2,7 @@ import { sanityFetch } from "@/sanity/lib/client";
 import { PROJECT_QUERY } from "@/sanity/lib/queries";
 import SanityImage from "@/components/SanityImage";
 import { PortableText } from "@portabletext/react";
+import type { PROJECT_QUERYResult } from "@/sanity/types"; // Import the auto-generated type
 
 export default async function ProjectPage({
   params,
@@ -10,7 +11,7 @@ export default async function ProjectPage({
 }) {
   const { slug } = await params;
 
-  const project = await sanityFetch({
+  const project: PROJECT_QUERYResult = await sanityFetch({
     query: PROJECT_QUERY,
     params: { slug },
     revalidate: 60,

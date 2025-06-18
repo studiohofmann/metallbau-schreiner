@@ -1,9 +1,10 @@
 import { sanityFetch } from "@/sanity/lib/client";
 import { CONTACT_QUERY } from "@/sanity/lib/queries";
 import { PortableText } from "next-sanity";
+import type { CONTACT_QUERYResult } from "@/sanity/types"; // Import the auto-generated type
 
 export default async function Footer() {
-  const contact = await sanityFetch({
+  const contact: CONTACT_QUERYResult = await sanityFetch({
     query: CONTACT_QUERY,
     revalidate: 60,
   });

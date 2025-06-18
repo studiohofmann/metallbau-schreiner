@@ -1,33 +1,11 @@
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
+import type { Home, Project } from "@/sanity/types"; // Import your generated types
 
-// Create a type for Sanity images based on your existing schema
-type SanityImageType = {
-  asset?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    // Replace with a valid key name or remove if unnecessary
-    // [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-  };
-  media?: unknown;
-  hotspot?: {
-    _type?: "sanity.imageHotspot";
-    x?: number;
-    y?: number;
-    height?: number;
-    width?: number;
-  };
-  crop?: {
-    _type?: "sanity.imageCrop";
-    top?: number;
-    bottom?: number;
-    left?: number;
-    right?: number;
-  };
-  alt?: string;
-  _type: "image";
-};
+// Use the image type from your schema (they are the same structure)
+type SanityImageType = NonNullable<Home["heroImage"]>;
+// Or, if you want to support both Home and Project images, you could use:
+// type SanityImageType = NonNullable<Project["titleImage"]>;
 
 interface SanityImageProps {
   image: SanityImageType;

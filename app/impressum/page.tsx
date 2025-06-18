@@ -1,9 +1,10 @@
 import { sanityFetch } from "@/sanity/lib/client";
 import { DISCLAIMER_QUERY } from "@/sanity/lib/queries";
 import { PortableText } from "@portabletext/react";
+import type { DISCLAIMER_QUERYResult } from "@/sanity/types"; // Import the auto-generated type
 
 export default async function Disclaimer() {
-  const disclaimer = await sanityFetch({
+  const disclaimer: DISCLAIMER_QUERYResult = await sanityFetch({
     query: DISCLAIMER_QUERY,
     revalidate: 60,
   });

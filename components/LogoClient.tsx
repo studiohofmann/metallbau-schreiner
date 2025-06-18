@@ -4,11 +4,10 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { PortableText, PortableTextComponents } from "next-sanity";
-import type { PortableTextBlock } from "@portabletext/types";
+import type { LOGO_QUERYResult } from "@/sanity/types";
 
-// Define proper type for logoData
 interface LogoClientProps {
-  logoData: PortableTextBlock[];
+  logoData: LOGO_QUERYResult;
 }
 
 export default function LogoClient({ logoData }: LogoClientProps) {
@@ -19,21 +18,14 @@ export default function LogoClient({ logoData }: LogoClientProps) {
     marks: {},
     block: {
       normal: ({ children }) => (
-        <p
-          style={{ whiteSpace: "pre-wrap" }}
-          className={
-            isHome ? "text-zinc-400" : "text-zinc-500 hover:text-zinc-400"
-          }
-        >
-          {children}
-        </p>
+        <p style={{ whiteSpace: "pre-wrap" }}>{children}</p>
       ),
     },
   };
 
   return (
     <Link href="/" className={isHome ? "active-logo" : ""}>
-      <PortableText value={logoData} components={components} />
+      <PortableText value={logoData?.logo ?? []} components={components} />
     </Link>
   );
 }

@@ -2,9 +2,10 @@ import { sanityFetch } from "@/sanity/lib/client";
 import { LOGO_QUERY } from "@/sanity/lib/queries";
 import Link from "next/link";
 import { PortableText, PortableTextComponents } from "next-sanity";
+import type { LOGO_QUERYResult } from "@/sanity/types"; // Use your auto-generated type
 
 export default async function Logo() {
-  const logo = await sanityFetch({
+  const logo: LOGO_QUERYResult = await sanityFetch({
     query: LOGO_QUERY,
     revalidate: 60,
   });
@@ -21,8 +22,7 @@ export default async function Logo() {
   };
   return (
     <Link href={"/"}>
-      {" "}
-      <PortableText value={logo.logo ?? []} />
+      <PortableText value={logo.logo ?? []} components={components} />
     </Link>
   );
 }

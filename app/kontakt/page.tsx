@@ -2,6 +2,7 @@ import { sanityFetch } from "@/sanity/lib/client";
 import { CONTACT_QUERY } from "@/sanity/lib/queries";
 import { PortableText } from "@portabletext/react";
 import dynamic from "next/dynamic";
+import type { CONTACT_QUERYResult } from "@/sanity/types"; // Import the auto-generated type
 
 const DynamicMap = dynamic(() => import("@/components/Map"), {
   loading: () => <p>Loading map...</p>,
@@ -9,7 +10,7 @@ const DynamicMap = dynamic(() => import("@/components/Map"), {
 });
 
 export default async function Contact() {
-  const contact = await sanityFetch({
+  const contact: CONTACT_QUERYResult = await sanityFetch({
     query: CONTACT_QUERY,
     revalidate: 60,
   });
