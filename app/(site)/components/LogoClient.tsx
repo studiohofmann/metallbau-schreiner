@@ -14,10 +14,6 @@ export default function LogoClient({ logoData }: LogoClientProps) {
   const pathname = usePathname();
   const isHome = pathname === "/";
 
-  console.log("🚨 LOGO CLIENT RENDERED 🚨");
-  console.log("pathname:", pathname);
-  console.log("isHome:", isHome);
-
   const components: PortableTextComponents = {
     marks: {},
     block: {

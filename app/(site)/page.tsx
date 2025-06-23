@@ -1,7 +1,7 @@
 import { sanityFetch } from "@/sanity/lib/client";
 import { HOME_QUERY } from "@/sanity/lib/queries";
 import { PortableText } from "@portabletext/react";
-import HeroImage from "@/components/HeroImage";
+import HeroImage from "../(site)/components/HeroImage"; // Adjust the import path as necessary
 import type { HOME_QUERYResult } from "@/sanity/types"; // Import the auto-generated type
 
 export default async function Home() {

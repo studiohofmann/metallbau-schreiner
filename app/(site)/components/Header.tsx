@@ -1,5 +1,5 @@
 import Logo from "./Logo";
-import Navigation from "@/components/Navigation";
+import Navigation from "../components/Navigation";
 import ContactIcons from "./ContactIcons";
 
 export default function Header() {

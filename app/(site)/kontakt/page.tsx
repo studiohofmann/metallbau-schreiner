@@ -4,7 +4,7 @@ import { PortableText } from "@portabletext/react";
 import dynamic from "next/dynamic";
 import type { CONTACT_QUERYResult } from "@/sanity/types"; // Import the auto-generated type
 
-const DynamicMap = dynamic(() => import("@/components/Map"), {
+const DynamicMap = dynamic(() => import("../components/Map"), {
   loading: () => <p>Loading map...</p>,
   ssr: !!false,
 });
