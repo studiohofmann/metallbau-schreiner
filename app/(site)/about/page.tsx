@@ -1,7 +1,7 @@
 import { sanityFetch } from "@/sanity/lib/client";
 import { ABOUT_QUERY } from "@/sanity/lib/queries";
 import { PortableText } from "@portabletext/react";
-import SanityImage from "@/components/SanityImage";
+import SanityImage from "../components/SanityImage";
 import type { ABOUT_QUERYResult } from "@/sanity/types"; // 1. Import the type
 
 export default async function About() {

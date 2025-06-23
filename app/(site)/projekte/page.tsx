@@ -1,7 +1,7 @@
 import { sanityFetch } from "@/sanity/lib/client";
 import { PROJECTS_QUERY } from "@/sanity/lib/queries";
 import { PortableText } from "@portabletext/react";
-import ProjectsGallery from "@/components/ProjectsGallery";
+import ProjectsGallery from "../components/ProjectsGallery";
 import type { PROJECTS_QUERYResult } from "@/sanity/types"; // Import the auto-generated type
 
 export default async function Projects() {

@@ -1,6 +1,6 @@
 import { sanityFetch } from "@/sanity/lib/client";
 import { PROJECT_QUERY } from "@/sanity/lib/queries";
-import SanityImage from "@/components/SanityImage";
+import SanityImage from "../../components/SanityImage";
 import { PortableText } from "@portabletext/react";
 import type { PROJECT_QUERYResult } from "@/sanity/types"; // Import the auto-generated type
 

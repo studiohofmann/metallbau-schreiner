@@ -1,6 +1,6 @@
 import { sanityFetch } from "@/sanity/lib/client";
 import { PROJECTS_GALLERY_QUERY } from "@/sanity/lib/queries";
-import SanityImage from "@/components/SanityImage";
+import SanityImage from "../components/SanityImage";
 import Link from "next/link";
 import type { PROJECTS_GALLERY_QUERYResult } from "@/sanity/types"; // Import the generated type
 
