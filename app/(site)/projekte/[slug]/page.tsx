@@ -48,7 +48,7 @@ export default async function ProjectPage({
           {project.gallery.map((imageItem: any, index: number) => (
             <SanityImage
               key={index}
-              image={imageItem as any}
+              image={imageItem}
               altFallback={`Gallery image ${index + 1}`}
               aspectRatio="aspect-[4/3]"
               className="object-cover"
