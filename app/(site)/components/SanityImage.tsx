@@ -3,16 +3,16 @@ import { urlFor } from "@/sanity/lib/image";
 
 interface SanityImageProps {
   image: {
-    asset: {
+    asset?: {
       _ref: string;
       _type: "reference";
       _weak?: boolean;
-      ["internalGroqTypeReferenceTo"]?: "sanity.imageAsset";
+      internalGroqTypeReferenceTo?: "sanity.imageAsset";
     } | null;
-    alt: string | null;
+    alt?: string | null;
     _type: "image";
-    [key: string]: unknown; // Allow for other fields like crop/hotspot
-  };
+    [key: string]: unknown; // allow extra fields like crop, hotspot, etc.
+  } | null;
   altFallback?: string;
   aspectRatio?: string;
   priority?: boolean;
@@ -26,6 +26,7 @@ export default function SanityImage({
   priority = false,
   className = "object-cover",
 }: SanityImageProps) {
+  // Defensive check — ensures image and image.asset are valid
   if (!image || !image.asset) {
     return null;
   }
