@@ -1,18 +1,9 @@
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
+import { SanityImageType } from "@/sanity/types-shared";
 
 interface SanityImageProps {
-  image: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      internalGroqTypeReferenceTo?: "sanity.imageAsset";
-    } | null;
-    alt?: string | null;
-    _type: "image";
-    [key: string]: unknown; // allow extra fields like crop, hotspot, etc.
-  } | null;
+  image: SanityImageType;
   altFallback?: string;
   aspectRatio?: string;
   priority?: boolean;
