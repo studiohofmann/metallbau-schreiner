@@ -4,11 +4,6 @@ import SanityImage from "../../components/SanityImage";
 import { PortableText } from "@portabletext/react";
 import type { PROJECTS_QUERYResult } from "@/sanity/types"; // Import the auto-generated type
 
-type ProjectItem = NonNullable<
-  NonNullable<PROJECTS_QUERYResult>["project"]
->[number];
-type GalleryImage = NonNullable<ProjectItem["gallery"]>[number];
-
 export default async function ProjectPage({
   params,
 }: {
