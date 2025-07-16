@@ -10,11 +10,11 @@ export default async function Footer() {
   });
 
   return (
-    <div className="mb-22 md:mb-4 text-zinc-800">
+    <div className="mb-22 md:mb-4 text-zinc-800 text-sm">
       <div className="line mb-8 mx-0" />
       <div className="flex justify-between items-end">
-        <h3>{contact && <PortableText value={contact.address ?? []} />}</h3>
-        <h3>All rights reserved &copy; {new Date().getFullYear()}</h3>
+        <div>{contact && <PortableText value={contact.address ?? []} />}</div>
+        <div>All rights reserved &copy; {new Date().getFullYear()}</div>
       </div>
     </div>
   );

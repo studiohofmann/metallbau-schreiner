@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "predev": "npm run typegen",
+    "predev": "npm update @sanity/cli && npm run typegen",
     "dev": "next dev",
-    "prebuild": "npm run typegen",
+    "prebuild": "npm update @sanity/cli && npm run typegen",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",

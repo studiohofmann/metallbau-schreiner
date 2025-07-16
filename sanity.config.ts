@@ -10,7 +10,7 @@ import { structure } from "./sanity/structure";
 
 export default defineConfig({
   name: "default",
-  title: "Your Project Name",
+  title: "Metallbildnerei Schreiner",
   basePath: "/studio",
   projectId,
   dataset,

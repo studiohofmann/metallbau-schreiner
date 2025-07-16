@@ -9,16 +9,22 @@ export const HOME_QUERY = defineQuery(`*[_type == "home"][0]{
 }`);
 
 export const PROJECTS_QUERY = defineQuery(`*[_type == "projects"][0]{
-  pageTitleMenu, slug, introduction,
-}`);
-export const PROJECTS_GALLERY_QUERY =
-  defineQuery(`*[_type == "project" && defined(slug.current)]{
-  title, sortOrder, slug, titleImage
-}`);
-
-export const PROJECT_QUERY =
-  defineQuery(`*[_type == "project" && slug.current == $slug][0]{
-  title, sortOrder, slug, titleImage, text, gallery,
+  pageTitleMenu,
+  slug,
+  introduction,
+  project[]{
+    title,
+    slug,
+    titleImage{
+      asset,
+      alt
+    },
+    text,
+    gallery[]{
+      asset,
+      alt
+    }
+  }
 }`);
 
 export const ABOUT_QUERY = defineQuery(`*[_type == "about"][0]{

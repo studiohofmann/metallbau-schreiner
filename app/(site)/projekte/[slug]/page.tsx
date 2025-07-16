@@ -1,8 +1,8 @@
 import { sanityFetch } from "@/sanity/lib/client";
-import { PROJECT_QUERY } from "@/sanity/lib/queries";
+import { PROJECTS_QUERY } from "@/sanity/lib/queries";
 import SanityImage from "../../components/SanityImage";
 import { PortableText } from "@portabletext/react";
-import type { PROJECT_QUERYResult } from "@/sanity/types"; // Import the auto-generated type
+import type { PROJECTS_QUERYResult } from "@/sanity/types"; // Import the auto-generated type
 
 export default async function ProjectPage({
   params,
@@ -11,11 +11,16 @@ export default async function ProjectPage({
 }) {
   const { slug } = await params;
 
-  const project: PROJECT_QUERYResult = await sanityFetch({
-    query: PROJECT_QUERY,
-    params: { slug },
+  // Fetch the projects data (which contains the project array)
+  const projectsData: PROJECTS_QUERYResult = await sanityFetch({
+    query: PROJECTS_QUERY,
     revalidate: 60,
   });
+
+  // Find the specific project from the project array using the slug
+  const project = projectsData?.project?.find(
+    (p: any) => p.slug?.current === slug
+  );
 
   if (!project) {
     return <div>Projekt nicht gefunden.</div>;
@@ -28,7 +33,7 @@ export default async function ProjectPage({
         {project.titleImage && (
           <div className="md:basis-1/2">
             <SanityImage
-              image={project.titleImage}
+              image={project.titleImage as any}
               altFallback={project.title ?? undefined}
             />
           </div>
@@ -40,10 +45,10 @@ export default async function ProjectPage({
       </div>
       {project.gallery && project.gallery.length > 0 && (
         <div className="gallery">
-          {project.gallery.map((imageItem, index) => (
+          {project.gallery.map((imageItem: any, index: number) => (
             <SanityImage
               key={index}
-              image={imageItem}
+              image={imageItem as any}
               altFallback={`Gallery image ${index + 1}`}
               aspectRatio="aspect-[4/3]"
               className="object-cover"

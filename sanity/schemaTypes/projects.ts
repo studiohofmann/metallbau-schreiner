@@ -36,6 +36,88 @@ const projects = {
       type: "array",
       of: [{ type: "block" }],
     }),
+    defineField({
+      name: "project",
+      title: "Project",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          name: "projectItem",
+          title: "Project Item",
+          fields: [
+            defineField({
+              name: "title",
+              title: "Title",
+              type: "string",
+              validation: (rule) => rule.required(),
+            }),
+            defineField({
+              name: "slug",
+              title: "Slug",
+              type: "slug",
+              description:
+                "Add a custom slug for the URL or generate one from the title",
+              options: {
+                source: "title",
+                maxLength: 96,
+              },
+              validation: (rule) => rule.required(),
+            }),
+            defineField({
+              name: "titleImage",
+              title: "Title Image",
+              type: "image",
+              options: {
+                hotspot: true,
+              },
+              fields: [
+                {
+                  name: "alt",
+                  type: "string",
+                  title: "Alternative Text",
+                },
+              ],
+            }),
+            defineField({
+              name: "text",
+              title: "Project Description",
+              type: "array",
+              of: [{ type: "block" }],
+            }),
+            defineField({
+              name: "gallery",
+              title: "Project Gallery",
+              type: "array",
+              of: [
+                {
+                  type: "image",
+                  fields: [
+                    {
+                      name: "alt",
+                      type: "string",
+                      title: "Alternative Text",
+                    },
+                  ],
+                  options: {
+                    hotspot: true,
+                  },
+                },
+              ],
+              description: "Upload and manage multiple images for this project",
+            }),
+          ],
+          preview: {
+            select: {
+              title: "title",
+              subtitle: "slug.current",
+              media: "titleImage",
+            },
+          },
+        },
+      ],
+      description: "Add multiple projects. Drag to reorder them.",
+    }),
   ],
 };
 
