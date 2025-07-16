@@ -18,9 +18,7 @@ export default async function ProjectPage({
   });
 
   // Find the specific project from the project array using the slug
-  const project = projectsData?.project?.find(
-    (p: any) => p.slug?.current === slug
-  );
+  const project = projectsData?.project?.find((p) => p.slug?.current === slug);
 
   if (!project) {
     return <div>Projekt nicht gefunden.</div>;
@@ -33,7 +31,7 @@ export default async function ProjectPage({
         {project.titleImage && (
           <div className="md:basis-1/2">
             <SanityImage
-              image={project.titleImage as any}
+              image={project.titleImage}
               altFallback={project.title ?? undefined}
             />
           </div>
