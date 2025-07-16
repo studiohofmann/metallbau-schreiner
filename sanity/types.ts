@@ -464,7 +464,7 @@ export type HOME_QUERYResult = {
   }> | null;
 } | null;
 // Variable: PROJECTS_QUERY
-// Query: *[_type == "projects"][0]{  pageTitleMenu,  slug,  introduction,  project[]{    title,    slug,    titleImage{      asset,      alt    },    text,    gallery[]{      asset,      alt    }  }}
+// Query: *[_type == "projects"][0]{  pageTitleMenu,  slug,  introduction,  project[]{    title,    slug,    titleImage{      _type,      asset,      alt    },    text,    gallery[]{      _type,      asset,      alt    }  }}
 export type PROJECTS_QUERYResult = {
   pageTitleMenu: string | null;
   slug: Slug | null;
@@ -490,6 +490,7 @@ export type PROJECTS_QUERYResult = {
     title: string | null;
     slug: Slug | null;
     titleImage: {
+      _type: "image";
       asset: {
         _ref: string;
         _type: "reference";
@@ -517,6 +518,7 @@ export type PROJECTS_QUERYResult = {
       _key: string;
     }> | null;
     gallery: Array<{
+      _type: "image";
       asset: {
         _ref: string;
         _type: "reference";
@@ -679,7 +681,7 @@ declare module "@sanity/client" {
   interface SanityQueries {
     "*[_type in [\"projects\", \"about\", \"contact\", \"disclaimer\"]] | order(sortOrder asc) {pageTitleMenu, slug}": NAVIGATION_QUERYResult;
     "*[_type == \"home\"][0]{\n  pageTitleMenu, slug, heroImage, introduction,\n}": HOME_QUERYResult;
-    "*[_type == \"projects\"][0]{\n  pageTitleMenu,\n  slug,\n  introduction,\n  project[]{\n    title,\n    slug,\n    titleImage{\n      asset,\n      alt\n    },\n    text,\n    gallery[]{\n      asset,\n      alt\n    }\n  }\n}": PROJECTS_QUERYResult;
+    "*[_type == \"projects\"][0]{\n  pageTitleMenu,\n  slug,\n  introduction,\n  project[]{\n    title,\n    slug,\n    titleImage{\n      _type,\n      asset,\n      alt\n    },\n    text,\n    gallery[]{\n      _type,\n      asset,\n      alt\n    }\n  }\n}": PROJECTS_QUERYResult;
     "*[_type == \"about\"][0]{\n  pageTitleMenu, slug, image, text,\n}": ABOUT_QUERYResult;
     "*[_type == \"contact\"][0]{\n  pageTitleMenu, slug, text, address, telephone, email,\n}": CONTACT_QUERYResult;
     "*[_type == \"disclaimer\"][0]{\n  pageTitleMenu, slug, legal, disclaimer,\n}": DISCLAIMER_QUERYResult;
