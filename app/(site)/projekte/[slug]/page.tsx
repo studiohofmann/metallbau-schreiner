@@ -28,7 +28,7 @@ export default async function ProjectPage({
 
   return (
     <div className="page">
-      <h2>{project.title}</h2>
+      <h1>{project.title}</h1>
       <div className="flex flex-col gap-8 md:flex-row">
         {project.titleImage && (
           <div className="md:basis-1/2">
