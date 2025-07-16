@@ -45,7 +45,7 @@ export default async function ProjectPage({
       </div>
       {project.gallery && project.gallery.length > 0 && (
         <div className="gallery">
-          {project.gallery.map((imageItem: any, index: number) => (
+          {project.gallery.map((imageItem, index) => (
             <SanityImage
               key={index}
               image={imageItem}
