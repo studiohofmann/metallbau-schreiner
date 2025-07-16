@@ -2,11 +2,14 @@
 
 import "leaflet/dist/leaflet.css";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { LatLngExpression } from "leaflet";
 
 const Map = () => {
+  const center: LatLngExpression = [46.861505, 2.496587];
+
   return (
     <MapContainer
-      center={[46.861505, 2.496587]}
+      center={center}
       zoom={15}
       style={{ height: "100%", width: "100%" }}
     >
